@@ -1,3 +1,5 @@
+import { promises as fs } from "fs";
+
 import {
   Table,
   TableBody,
@@ -6,7 +8,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import * as data from "@/app/assets/cronograma.json";
 import { TableDaysRow } from "./tableDaysRow";
 
 export enum Waves {
@@ -25,7 +26,13 @@ type Props = {
   startDate: Date;
 };
 
-export function TableDays({ wave, startDate }: Props) {
+export async function TableDays({ wave, startDate }: Props) {
+  const file = await fs.readFile(
+    process.cwd() + "/src/data/cronograma.json",
+    "utf8"
+  );
+  const data = JSON.parse(file) as DataProps[];
+
   const getStartAndEnd = (wave: Waves) => {
     let startAndEnd = {
       start: 0,
