@@ -6,7 +6,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import * as data from "@/data/cronograma.json";
+import * as data from "@/app/assets/cronograma.json";
 import { TableDaysRow } from "./tableDaysRow";
 
 export enum Waves {
